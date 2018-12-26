@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ConsoleApplication1.Tokenizer;
 
 namespace ConsoleApplication1
 {
@@ -42,6 +43,10 @@ namespace ConsoleApplication1
                         num.Add(i);
                         pos.Add(tmpindx);
                     }
+                    else
+                    {
+                        num.Add(0);
+                    }
                 }
                 else
                 {
@@ -53,5 +58,52 @@ namespace ConsoleApplication1
                 tmpindx += l[i].Length;
             }
         }
+
+        public string ReplaceHumanNum(string input_s)
+        {
+            WordTokenizer wt = new WordTokenizer();
+            var l = wt.Tokenize(input_s);
+
+            HumanNumberFind hmf = new HumanNumberFind();
+            hmf.findNumberPositions(l);
+
+            string santance_buffer = string.Empty;
+            string number_buffer = string.Empty;
+
+            int j = 0;
+            //hmf.num.Add(0); // to finish & flush loop 
+            
+            foreach (int i in hmf.num)
+            {
+                if (i == 0) //not number
+                {
+
+                    if (number_buffer.Trim().Length > 0)
+                    { //convert number and flush                         
+                        santance_buffer += " " + HumanNumber.ParseFarsi(number_buffer.Trim());
+                        number_buffer = string.Empty;
+                    }
+
+                    santance_buffer += " " + l.ToArray()[j];
+                    j = j + 1;
+                }
+                else
+                {
+                    number_buffer += " " + l.ToArray()[i];
+                    j = i + 1;
+                }
+            }
+
+            //test for buffer
+            if (number_buffer.Trim().Length > 0)
+            { //convert number and flush                         
+                santance_buffer += " " + HumanNumber.ParseFarsi(number_buffer.Trim());
+                number_buffer = string.Empty;
+            }
+
+
+            return santance_buffer;
+        }
+
     }
 }
