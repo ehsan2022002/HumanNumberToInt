@@ -10,3 +10,12 @@ convert english and farsi digit to word and vice versa
             var i = HumanNumber.IntegerToWritten(-2005);
 
             var i2 = HumanNumber.IntegerToWrittenFA(-2005);
+
+
+            
+برای پیدا کردن یک عدد به حروف و تبدیل آن عدد به شکل رقم
+
+
+            HumanNumberFind hmf = new HumanNumberFind();
+            var sout = hmf.ReplaceHumanNum("در این چند سال هیچ وقت به اندازه این ده دقیقه فکر نکرده بودم یکصد");
+             
