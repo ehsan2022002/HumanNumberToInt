@@ -75,7 +75,12 @@ namespace ConsoleApplication1
             
             foreach (int i in hmf.num)
             {
-                if (i == 0) //not number
+                if (i == 0 && hmf.pos[j] == 0)
+                {
+                    number_buffer += " " + l.ToArray()[i];
+                    j = i + 1;
+                }                
+                else if (i == 0) //not number
                 {
 
                     if (number_buffer.Trim().Length > 0)
