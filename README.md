@@ -19,3 +19,5 @@ convert english and farsi digit to word and vice versa
             HumanNumberFind hmf = new HumanNumberFind();
             var sout = hmf.ReplaceHumanNum("در این چند سال هیچ وقت به اندازه این ده دقیقه فکر نکرده بودم یکصد");
              
+
+ریفاکتورش با شما 
